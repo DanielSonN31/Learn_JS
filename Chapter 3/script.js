@@ -73,69 +73,87 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 console.log(yearsUntilRetirement(2002, "Daniyel"));
 console.log(yearsUntilRetirement(1997, "Yan"));
 */
-/* Leetcode problem 1 - Two Sum
-var twoSum = function(nums, target, number) {
 
-    for (let i = 0; i < nums.length; i++) {
-        for (let b = 1; b < nums.length; b++){
-        let a = Number(nums[i] + nums[i+b]);
-        console.log(i, b, i+b, nums[i+b])
-        if (a === target){
-            number = [i, i+b];
-            return(number);
-        }
-    }
-    }
-    };
-    
-console.log(twoSum([3,2,3,4,5,6,2], 4))
+//36. Functions calling other functions
+
+/*
+function fruitSliser(fruits)    {
+    return(fruits * 4);
+}
+function fruitProcessor(apples, oranges)    {
+    const applePieces = fruitSliser(apples);
+    const orangePieces = fruitSliser(oranges);
+    console.log(`Juice made of ${applePieces} apple pieces and ${orangePieces} orange pieces.`)
+}
+
+fruitProcessor(3, 4);
 */
 
-// Tried doing Leetcode problem #2 Add two numbers, but I did with an arrays 
-// instead of linked lists. So this one is useless.
+// or
+
 /*
-var addTwoNumbers = function(l1, l2) {
-    l1.reverse();
-    l2.reverse();
-    let a;
-    let b;
-    let c = [];
-    let d = [];
-    
-    for (let i = 0; i < l1.length && l2.length; i++){
-        
-        a = Number((l1).join(""));
-        b = Number((l2).join(""));
+function fruitSliser(fruits)    {
+    return(fruits * 4);
+}
+function fruitProcessor(apples, oranges)    {
+    const applePieces = fruitSliser(apples);
+    const orangePieces = fruitSliser(oranges);
+    const juice = `Juice made of ${applePieces} apple pieces and ${orangePieces} orange pieces.`;
+    return juice;
+}
 
-    }
-    c.push(a + b);
-    c = ("" + c).split("");
-    for (let i = 0; i < c.length; i++){
-        d.push(parseInt(c[i]))
-    }
-    
-    console.log(d)
-    
-       
-};
-
-addTwoNumbers([2,4,3], [5,6,4]);
-
+console.log(fruitProcessor(3, 4));
 */
 
-// LeetCode 9 Palindrome number
+// 37. Reviewing functions
+
 /*
-var isPalindrome = function(x) {
+function calculateAge (birthYear){
+    return (2022 - birthYear);
+}
 
-    let a = Number(String(x).split('').reverse().join(''));
+function yearsUntilRetirement (birthYear, firstName){
+
+    const age = calculateAge(birthYear);
+    const yearsLeft = 65 - age;
     
-    if (x === a){
-
-        return(true);
-
+    if (yearsLeft > 1){
+        return(`${firstName}, you have ${yearsLeft} years until the retirement`)
+    }else if (yearsLeft === 1){
+        return(`${firstName}, you have ${yearsLeft} year until the retirement`)
+    }else if (yearsLeft === 0){
+        return(`${firstName}, your retirement just started`)
+    }else if (yearsLeft === -1){
+        return(`${firstName}, you are already ${Math.abs(yearsLeft)} year on your retirement`)
     }else{
-        return(false);
+        return(`${firstName}, you are already ${Math.abs(yearsLeft)} years on your retirement`)
     }
-};
-console.log(isPalindrome(123));
+    
+}
+
+
+console.log(yearsUntilRetirement(1955, "George"));
+
 */
+
+// 38. Coding challenge
+
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+
+function checkWinner(){
+
+    const dolphinsAverage = calcAverage(85, 54, 41);
+    const koalasAverage = calcAverage(23, 34, 27);
+    if (dolphinsAverage > koalasAverage && (dolphinsAverage / 2) >= koalasAverage){
+        return(`Dolphins team won ${dolphinsAverage} vs ${koalasAverage}`);
+    }else if (dolphinsAverage > koalasAverage){
+        return(`Draw`);
+    }else if (koalasAverage > dolphinsAverage && (koalasAverage / 2) >= dolphinsAverage){
+        return(`Koalas team won ${koalasAverage} vs ${dolphinsAverage}`);
+    }else{
+        return(`Draw`);
+    
+    }
+}
+
+console.log(checkWinner());
